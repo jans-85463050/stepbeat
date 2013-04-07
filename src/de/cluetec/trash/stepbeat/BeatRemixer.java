@@ -27,7 +27,7 @@ public class BeatRemixer {
 	
 	public void setSample(AssetFileDescriptor sampleFile) {
 		int id = this.soundPool.load(sampleFile, 1);
-        this.streamID = this.soundPool.play(id, 1, 1, 1, 0, sampleRate);
+        this.streamID = this.soundPool.play(id, 1, 1, 1, -1, sampleRate);
 	}
 	
 	public void setRate() {
