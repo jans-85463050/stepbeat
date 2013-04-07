@@ -41,7 +41,7 @@ import java.math.BigDecimal;
 /**
  * Connects to Stride Sdm Plugin and receives data
  */
-public class Activity_StrideSdmSampler extends Activity
+public class PlaybackActivity extends Activity
 {
     AntPlusStrideSdmPcc sdmPcc = null;
     
@@ -160,16 +160,16 @@ public class Activity_StrideSdmSampler extends Activity
                                     subscribeToEvents();
                                     break;
                                 case AntPluginMsgDefines.MSG_REQACC_RESULT_whatCHANNELNOTAVAILABLE:
-                                    Toast.makeText(Activity_StrideSdmSampler.this, "Channel Not Available", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PlaybackActivity.this, "Channel Not Available", Toast.LENGTH_SHORT).show();
                                     tv_status.setText("Error. Do Menu->Reset.");
                                     break;
                                 case AntPluginMsgDefines.MSG_REQACC_RESULT_whatOTHERFAILURE:
-                                    Toast.makeText(Activity_StrideSdmSampler.this, "RequestAccess failed. See logcat for details.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PlaybackActivity.this, "RequestAccess failed. See logcat for details.", Toast.LENGTH_SHORT).show();
                                     tv_status.setText("Error. Do Menu->Reset.");
                                     break;
                                 case AntPluginMsgDefines.MSG_REQACC_RESULT_whatDEPENDENCYNOTINSTALLED:
                                     tv_status.setText("Error. Do Menu->Reset.");
-                                    AlertDialog.Builder adlgBldr = new AlertDialog.Builder(Activity_StrideSdmSampler.this);
+                                    AlertDialog.Builder adlgBldr = new AlertDialog.Builder(PlaybackActivity.this);
                                     adlgBldr.setTitle("Missing Dependency");
                                     adlgBldr.setMessage("The required application\n\"" + AntPlusStrideSdmPcc.getMissingDependencyName() + "\"\n is not installed. Do you want to launch the Play Store to search for it?");
                                     adlgBldr.setCancelable(true);
@@ -182,7 +182,7 @@ public class Activity_StrideSdmSampler extends Activity
                                                     startStore = new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id=" + AntPlusStrideSdmPcc.getMissingDependencyPackageName()));
                                                     startStore.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                     
-                                                    Activity_StrideSdmSampler.this.startActivity(startStore);                                                
+                                                    PlaybackActivity.this.startActivity(startStore);                                                
                                                 }
                                             });
                                     adlgBldr.setNegativeButton("Cancel", new OnClickListener()
@@ -201,7 +201,7 @@ public class Activity_StrideSdmSampler extends Activity
                                     tv_status.setText("Cancelled. Do Menu->Reset.");
                                     break;
                                 default:
-                                    Toast.makeText(Activity_StrideSdmSampler.this, "Unrecognized result: " + resultCode, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PlaybackActivity.this, "Unrecognized result: " + resultCode, Toast.LENGTH_SHORT).show();
                                     tv_status.setText("Error. Do Menu->Reset.");
                                     break;
                             } 
